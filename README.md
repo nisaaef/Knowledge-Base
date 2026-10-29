@@ -1,58 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# KnowledgeBase
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based knowledge base website for publishing guides, tutorials, and FAQs. Visitors can search and browse articles, writers create and manage their own content, and admins oversee the whole platform.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Public site
+- Home page with a keyword search bar and category filters (All, FAQ, Guide, Tutorial)
+- Article cards showing category, title, excerpt, author, publish date, and estimated reading time
+- About and Contact pages
+- Login and writer registration
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Writer registration
+- Sign-up form with name, email, password (minimum 8 characters), and the topics the applicant wants to write about (minimum 20 characters)
+- New writer accounts can log in only after an admin approves them
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin dashboard
+- Overview stats: published articles, active writers, total articles, and unread messages
+- Latest articles and latest messages at a glance
+- **Articles:** manage all articles on the platform
+- **Categories:** manage article categories
+- **Writers:** manage writer accounts and registrations
+- **Messages:** inbox for messages sent through the site
+- **Website Settings:** configure site-wide settings
+- **Profile:** manage the admin's own profile
 
-## Learning Laravel
+### Writer dashboard
+- Personal stats: published articles, drafts, and total articles
+- **My Articles:** create, edit, and manage your own articles (published or draft)
+- Articles are written in Markdown
+- **Profile:** manage your own profile
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Framework:** Laravel (PHP)
+- **Database:** MySQL
+- **Frontend:** Blade templates, CSS, JavaScript
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Requirements
 
-## Agentic Development
+- PHP >= 8.1
+- Composer
+- Node.js and npm
+- MySQL
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Installation
 
-```bash
-composer require laravel/boost --dev
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/annisaaef24/Knowledge-Base.git
+   cd Knowledge-Base
+   ```
 
-php artisan boost:install
-```
+2. **Install dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+3. **Set up the environment file**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Configure the database** in `.env`
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=knowledge_base
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+5. **Run migrations and seeders**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. **Build assets and start the server**
+   ```bash
+   npm run build
+   php artisan serve
+   ```
+
+   The app will be available at `http://localhost:8000`.
+
+## Default Accounts
+
+The seeder creates sample data, including an admin account and a sample writer. Replace the values below with the credentials from your seeder.
+
+| Role   | Email             | Password        |
+|--------|-------------------|-----------------|
+| Admin  | admin@example.com | `your-password` |
+
+> Change the default credentials before deploying to production.
+
+## Roles and Permissions
+
+| Action                      | Visitor | Writer       | Admin |
+|-----------------------------|:-------:|:------------:|:-----:|
+| Read and search articles    | Yes     | Yes          | Yes   |
+| Apply to become a writer    | Yes     | -            | -     |
+| Create and edit articles    | No      | Own articles | All   |
+| Manage categories           | No      | No           | Yes   |
+| Approve and manage writers  | No      | No           | Yes   |
+| Read contact messages       | No      | No           | Yes   |
+| Change website settings     | No      | No           | Yes   |
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Contributions are welcome. Fork the repository, create a feature branch, and open a pull request.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced under the [MIT License](LICENSE).
+
+## Image
+<img width="1366" height="1082" alt="screencapture-knowledge-base-test-2026-10-29-15_02_40" src="https://github.com/user-attachments/assets/d64f3f07-cad7-4b9f-8ea7-ad9462cc22b2" />
+
+<img width="1366" height="641" alt="screencapture-knowledge-base-test-penulis-2026-10-29-15_25_36" src="https://github.com/user-attachments/assets/70ccbc63-f483-489b-b7cd-3c8cf0a03c84" />
+
+<img width="1366" height="641" alt="screencapture-knowledge-base-test-admin-2026-10-29-15_04_48" src="https://github.com/user-attachments/assets/efbe14b7-f05e-4865-b531-242ce36b6ca2" />
+
