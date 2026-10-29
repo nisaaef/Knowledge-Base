@@ -123,3 +123,7 @@ This project is open-sourced under the [MIT License](LICENSE).
 
 <img width="1366" height="641" alt="screencapture-knowledge-base-test-admin-2026-10-29-15_04_48" src="https://github.com/user-attachments/assets/efbe14b7-f05e-4865-b531-242ce36b6ca2" />
 
+## 📄 License
+
+This project was created for learning and portfolio purposes.
+
